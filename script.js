@@ -4,17 +4,27 @@ let currentRoundNumber = 1;
 
 // Write your code below:
 
+
 const generateTarget = function () {
 	return Math.floor( Math.random() * 10 );
 }
 
+const getAbsoluteDistance = function ( guess, target ) {
+	return Math.abs(guess - target);
+}
+
 const compareGuesses = function ( humanGuess, computerGuess, targetNumber ) {
 
+	// Validate human input
+	if ( humanGuess < 0 || humanGuess > 9) {
+		alert( "You have to introduce a number between 0 and 9" );
+	}
+
 	// Get human approach
-	const humanApproach = Math.abs(humanGuess - targetNumber);
+	const humanApproach = getAbsoluteDistance(humanGuess, targetNumber);
 
 	// Get computer approach
-	const computerApproach = Math.abs(computerGuess - targetNumber);
+	const computerApproach = getAbsoluteDistance(computerGuess, targetNumber);
 
 	// Return if human wins
 	return humanApproach <= computerApproach;
